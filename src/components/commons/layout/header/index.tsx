@@ -54,12 +54,14 @@ export default function LayoutHeader() {
     <HeaderWrap>
       <HeaderContents>
         <div>
-          <Image
-            src="/logo/dingco-logo 1.png"
-            alt="logo"
-            width="181px"
-            height="49px"
-          />
+          <Link href="/">
+            <Image
+              src="/logo/dingco-logo1.png"
+              alt="logo"
+              width="181px"
+              height="49px"
+            />
+          </Link>
         </div>
         <HeaderList>
           <li>

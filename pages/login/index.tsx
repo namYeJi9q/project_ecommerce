@@ -1,4 +1,9 @@
+import { IMutationLoginUserArgs } from "@/src/commons/types/generated/types";
+import { useMutationLoginUser } from "@/src/components/commons/hooks/useMutation/user/useMutationLoginUser";
 import styled from "@emotion/styled";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { LoginSchema } from "./login.validation";
 
 const Wrapper = styled.section`
   width: 100%;
@@ -21,7 +26,7 @@ const Line = styled.div`
   margin-bottom: 90px;
 `;
 
-const InputWrapper = styled.article`
+const InputWrapper = styled.form`
   display: flex;
   margin-bottom: 200px;
   button {
@@ -55,27 +60,52 @@ const InputList = styled.div`
   }
 `;
 
+const Error = styled.div`
+  color: red;
+  font-size: 12px;
+  margin-left: 120px;
+  padding: 4px 0;
+`;
+
 export default function LoginPage() {
+  const { onSubmitLogin } = useMutationLoginUser();
+
+  const { register, handleSubmit, formState } = useForm<IMutationLoginUserArgs>(
+    {
+      resolver: yupResolver(LoginSchema),
+    }
+  );
+
+  const onClickLogin = (data: IMutationLoginUserArgs) => {
+    onSubmitLogin(data);
+  };
+
   return (
     <Wrapper>
       <H1>LOGIN</H1>
       <Line />
-      <InputWrapper>
+      <InputWrapper onSubmit={handleSubmit(onClickLogin)}>
         <InputList>
           <div>
             <span>아이디</span>
             <input
               type="text"
               placeholder="이메일 아이디를 @까지 정확하게 입력하세요"
+              {...register("email")}
             />
           </div>
+          <Error>{formState.errors.email?.message}</Error>
           <div>
             <span>비밀번호</span>
             <input
               type="password"
               placeholder="영문+숫자 조합 8~16자리를 입력해주세요."
+              {...register("password")}
             />
           </div>
+          {formState.errors.password && (
+            <Error>{formState.errors.password?.message}</Error>
+          )}
         </InputList>
         <button>로그인</button>
       </InputWrapper>

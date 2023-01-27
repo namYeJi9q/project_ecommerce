@@ -31,7 +31,7 @@ export default function LayoutFooter() {
   return (
     <FooterWrap>
       <Image
-        src="/logo/dingco-logo 3.png"
+        src="/logo/dingco-logo3.png"
         alt="로고 이미지"
         width="169px"
         height="52px"

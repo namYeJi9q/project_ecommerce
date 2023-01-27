@@ -59,12 +59,14 @@ export default function LayoutSignupHeader() {
     <HeaderWrap>
       <HeaderContents>
         <div>
-          <Image
-            src="/logo/white-logo.png"
-            alt="logo"
-            width="140px"
-            height="44px"
-          />
+          <Link href="/">
+            <Image
+              src="/logo/white-logo.png"
+              alt="logo"
+              width="140px"
+              height="44px"
+            />
+          </Link>
         </div>
         <HeaderList>
           <li>
