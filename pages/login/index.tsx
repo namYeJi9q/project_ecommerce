@@ -4,68 +4,7 @@ import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema } from "./login.validation";
-
-const Wrapper = styled.section`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const H1 = styled.h1`
-  font-weight: 400;
-  font-size: 40px;
-  margin: 90px 0;
-`;
-
-const Line = styled.div`
-  width: 90%;
-  height: 3px;
-  background-color: #555;
-  margin-bottom: 90px;
-`;
-
-const InputWrapper = styled.form`
-  display: flex;
-  margin-bottom: 200px;
-  button {
-    width: 186px;
-    height: 136px;
-    background-color: #000;
-    color: #fff;
-    font-size: 20px;
-  }
-`;
-
-const InputList = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-right: 30px;
-  div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  span {
-    display: block;
-    font-size: 24px;
-  }
-  input {
-    width: 611px;
-    height: 56px;
-    margin-left: 20px;
-    padding: 18px;
-  }
-`;
-
-const Error = styled.div`
-  color: red;
-  font-size: 12px;
-  margin-left: 120px;
-  padding: 4px 0;
-`;
+import * as S from "./login.styles";
 
 export default function LoginPage() {
   const { onSubmitLogin } = useMutationLoginUser();
@@ -81,11 +20,11 @@ export default function LoginPage() {
   };
 
   return (
-    <Wrapper>
-      <H1>LOGIN</H1>
-      <Line />
-      <InputWrapper onSubmit={handleSubmit(onClickLogin)}>
-        <InputList>
+    <S.Wrapper>
+      <S.H1>LOGIN</S.H1>
+      <S.Line />
+      <S.InputWrapper onSubmit={handleSubmit(onClickLogin)}>
+        <S.InputList>
           <div>
             <span>아이디</span>
             <input
@@ -94,7 +33,7 @@ export default function LoginPage() {
               {...register("email")}
             />
           </div>
-          <Error>{formState.errors.email?.message}</Error>
+          <S.Error>{formState.errors.email?.message}</S.Error>
           <div>
             <span>비밀번호</span>
             <input
@@ -104,11 +43,11 @@ export default function LoginPage() {
             />
           </div>
           {formState.errors.password && (
-            <Error>{formState.errors.password?.message}</Error>
+            <S.Error>{formState.errors.password?.message}</S.Error>
           )}
-        </InputList>
+        </S.InputList>
         <button>로그인</button>
-      </InputWrapper>
-    </Wrapper>
+      </S.InputWrapper>
+    </S.Wrapper>
   );
 }

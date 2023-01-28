@@ -1,5 +1,5 @@
+import { ISignupFormState } from "@/pages/signup/signup.types";
 import {
-  ICreateUserInput,
   IMutation,
   IMutationCreateUserArgs,
 } from "@/src/commons/types/generated/types";
@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 export const CREATE_USER = gql`
   mutation createUser($createUserInput: CreateUserInput!) {
     createUser(createUserInput: $createUserInput) {
-      id
+      _id
     }
   }
 `;
@@ -22,7 +22,7 @@ export const useMutationCreateUser = () => {
     IMutationCreateUserArgs
   >(CREATE_USER);
 
-  const createUserSubmit = async (data: ICreateUserInput) => {
+  const createUserSubmit = async (data: ISignupFormState) => {
     try {
       await createUser({
         variables: {

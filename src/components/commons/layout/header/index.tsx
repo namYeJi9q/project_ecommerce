@@ -1,58 +1,16 @@
-import styled from "@emotion/styled";
+import { accessTokenState } from "@/src/commons/stores";
+import { useRecoilState } from "recoil";
 import Image from "next/image";
 import Link from "next/link";
-
-const HeaderWrap = styled.section`
-  width: 100%;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-`;
-
-const HeaderContents = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  div {
-    cursor: pointer;
-  }
-`;
-
-const HeaderList = styled.ul`
-  display: flex;
-  align-items: center;
-  li {
-    margin-right: 40px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-`;
-
-const ShoppingBag = styled.li`
-  position: relative;
-  ::after {
-    content: "0";
-    position: absolute;
-    top: 0;
-    right: -25px;
-    width: 20px;
-    height: 20px;
-    background-color: #f65656;
-    color: #fff;
-    font-size: 12px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 22px;
-  }
-`;
+import * as S from "./header.styles";
 
 export default function LayoutHeader() {
+  const [accessToken] = useRecoilState(accessTokenState);
+
+  const onClickLogout = () => {};
   return (
-    <HeaderWrap>
-      <HeaderContents>
+    <S.HeaderWrap>
+      <S.HeaderContents>
         <div>
           <Link href="/">
             <Image
@@ -63,16 +21,30 @@ export default function LayoutHeader() {
             />
           </Link>
         </div>
-        <HeaderList>
-          <li>
-            <Link href="/login">로그인</Link>
-          </li>
-          <li>
-            <Link href="/signup">회원가입</Link>
-          </li>
-          <ShoppingBag>장바구니</ShoppingBag>
-        </HeaderList>
-      </HeaderContents>
-    </HeaderWrap>
+        <S.HeaderList>
+          {accessToken ? (
+            <>
+              <li>님 포인트</li>
+              <li>
+                <span>충전</span>
+              </li>
+              <li>
+                <span onClick={onClickLogout}>로그아웃</span>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link href="/login">로그인</Link>
+              </li>
+              <li>
+                <Link href="/signup">회원가입</Link>
+              </li>
+            </>
+          )}
+          <S.ShoppingBag>장바구니</S.ShoppingBag>
+        </S.HeaderList>
+      </S.HeaderContents>
+    </S.HeaderWrap>
   );
 }

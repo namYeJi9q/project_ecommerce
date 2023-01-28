@@ -7,6 +7,7 @@ const NavWrap = styled.section`
   justify-content: center;
   align-items: center;
   background-color: #000;
+  position: relative;
 `;
 
 const NavList = styled.ul`
@@ -14,6 +15,11 @@ const NavList = styled.ul`
   display: flex;
   justify-content: space-between;
   color: #fff;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
   li {
     cursor: pointer;
     font-size: 22px;
