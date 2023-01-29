@@ -45,7 +45,7 @@ export const useMutationLoginUser = () => {
       setAccessToken(accessToken);
 
       Modal.success({ content: `로그인에 성공했습니다.` });
-      void router.push("/market");
+      void router.push("/");
     } catch (error) {
       if (error instanceof Error) console.log(error.message);
       Modal.error({ content: "로그인에 실패했습니다. 다시 시도해주세요." });

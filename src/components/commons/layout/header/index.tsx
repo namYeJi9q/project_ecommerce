@@ -3,11 +3,16 @@ import { useRecoilState } from "recoil";
 import Image from "next/image";
 import Link from "next/link";
 import * as S from "./header.styles";
+import { useMutationLogoutUser } from "../../hooks/useMutation/user/useMutationLogoutUser";
 
 export default function LayoutHeader() {
   const [accessToken] = useRecoilState(accessTokenState);
+  const { onSubmitLogout } = useMutationLogoutUser();
 
-  const onClickLogout = () => {};
+  const onClickLogout = () => {
+    onSubmitLogout();
+  };
+
   return (
     <S.HeaderWrap>
       <S.HeaderContents>
@@ -37,7 +42,7 @@ export default function LayoutHeader() {
               <li>
                 <Link href="/login">로그인</Link>
               </li>
-              <li>
+              <li onClick={onClickLogout}>
                 <Link href="/signup">회원가입</Link>
               </li>
             </>

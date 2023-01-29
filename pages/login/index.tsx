@@ -1,10 +1,10 @@
 import { IMutationLoginUserArgs } from "@/src/commons/types/generated/types";
 import { useMutationLoginUser } from "@/src/components/commons/hooks/useMutation/user/useMutationLoginUser";
-import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema } from "./login.validation";
 import * as S from "./login.styles";
+import { useRouter } from "next/router";
 
 export default function LoginPage() {
   const { onSubmitLogin } = useMutationLoginUser();
