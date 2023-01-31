@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
 
 const NavWrap = styled.section`
   width: 100%;
@@ -23,6 +24,7 @@ const NavList = styled.ul`
   li {
     cursor: pointer;
     font-size: 22px;
+    color: #fff;
   }
 `;
 
@@ -30,13 +32,16 @@ export default function LayoutNav() {
   return (
     <NavWrap>
       <NavList>
-        <li>BRAND</li>
+        <Link href="/brand">
+          <li>BRAND</li>
+        </Link>
         <li>CATEGORY</li>
         <li>LIFE</li>
         <li>BEAUTY</li>
         <li>|</li>
         <li>#STYLE</li>
         <li>EVENT</li>
+        <li>BEST</li>
       </NavList>
     </NavWrap>
   );
