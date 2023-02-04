@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 
 export const CREATE_USEDITEM = gql`
@@ -11,4 +11,7 @@ export const CREATE_USEDITEM = gql`
 
 export const useMutationCreateUseditem = () => {
   const router = useRouter();
+  const mutation = useMutation(CREATE_USEDITEM);
+
+  return mutation;
 };
