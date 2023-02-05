@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import * as S from "./write.styles";
 import dynamic from "next/dynamic";
 import { ICreateUseditemInput } from "@/src/commons/types/generated/types";
+import { useMutationCreateUseditem } from "@/src/components/commons/hooks/useMutation/product/useMutationCreateUseditem";
 
 const ReactQuill = dynamic(async () => await import("react-quill"), {
   ssr: false,
@@ -12,8 +13,9 @@ const ReactQuill = dynamic(async () => await import("react-quill"), {
 export default function ProductWrite(props: IProductWriteProps) {
   const router = useRouter();
 
-  //   const { register, handleSubmit, setValue, trigger } =
-  //     useForm<IProductWrite>();
+  const { createUsedItemSubmit } = useMutationCreateUseditem();
+  // const { register, handleSubmit, setValue, trigger } =
+  //   useForm<IProductWrite>();
 
   //   const onChangeContents = (value: string) => {
   //     setValue("contents", value === "<p><br></p>" ? "" : value);
