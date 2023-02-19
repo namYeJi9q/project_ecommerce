@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const BrandWrapper = styled.main`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,15 +9,19 @@ export const BrandWrapper = styled.main`
 `;
 
 export const BestWrap = styled.section`
-  width: 1822px;
+  width: 100%;
+  max-width: 1822px;
   height: 767px;
   background-color: #fff;
   padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 export const BestTitle = styled.h2`
   font-size: 22px;
   font-weight: 700;
-  margin: 0 auto;
+  text-align: center;
 `;
 
 export const SubmitButton = styled.button`

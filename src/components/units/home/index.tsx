@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import ProductItem from "../../commons/productItem";
+import ProductItem from "../../commons/productitem";
 
 const Wrapper = styled.section`
   width: 100%;
@@ -22,9 +22,7 @@ export default function Home() {
   return (
     <Wrapper>
       <h2>New Arrival</h2>
-      <section>
-        <ProductItem />
-      </section>
+      <section>{/* <ProductItem /> */}</section>
     </Wrapper>
   );
 }

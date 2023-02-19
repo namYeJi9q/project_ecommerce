@@ -9,7 +9,7 @@ export const globalStyles = css`
 
   html,
   body {
-    background-color: #fff;
+    background-color: #f1f1f1;
   }
 
   ol,

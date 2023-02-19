@@ -3,7 +3,7 @@ import { gql, useQuery } from "@apollo/client";
 
 export const FETCH_USER_LOGGED_IN = gql`
   query fetchUserLoggedIn {
-    id
+    _id
     email
     name
   }
