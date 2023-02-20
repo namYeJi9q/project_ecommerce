@@ -4,10 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 import * as S from "./header.styles";
 import { useMutationLogoutUser } from "../../hooks/useMutation/user/useMutationLogoutUser";
+import { useQuery } from "@apollo/client";
+import { IQuery } from "@/src/commons/types/generated/types";
+import { FETCH_USER_LOGGED_IN } from "../../hooks/useQueries/user/useQueryFetchUserLoggedIn";
 
 export default function LayoutHeader() {
   const [accessToken] = useRecoilState(accessTokenState);
   const { onSubmitLogout } = useMutationLogoutUser();
+  const { data } =
+    useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGED_IN);
 
   const onClickLogout = () => {
     onSubmitLogout();
@@ -29,7 +34,10 @@ export default function LayoutHeader() {
         <S.HeaderList>
           {accessToken ? (
             <>
-              <li>님 포인트</li>
+              <li>
+                {data?.fetchUserLoggedIn.name}님 포인트{" "}
+                {data?.fetchUserLoggedIn.userPoint}P
+              </li>
               <li>
                 <span>충전</span>
               </li>

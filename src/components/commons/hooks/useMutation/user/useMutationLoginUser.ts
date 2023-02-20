@@ -21,30 +21,27 @@ export const useMutationLoginUser = () => {
   const router = useRouter();
   const [, setAccessToken] = useRecoilState(accessTokenState);
 
-  const [login] = useMutation<
+  const [loginUser] = useMutation<
     Pick<IMutation, "loginUser">,
     IMutationLoginUserArgs
   >(LOGIN_USER);
 
   const onSubmitLogin = async (data: IMutationLoginUserArgs) => {
     try {
-      const result = await login({
+      const result = await loginUser({
         variables: {
           ...data,
         },
         refetchQueries: [{ query: FETCH_USER_LOGGED_IN }],
       });
-
       const accessToken = result.data?.loginUser.accessToken;
-
       if (accessToken === undefined) {
         Modal.error({ content: "로그인에 실패했습니다. 다시 시도해주세요." });
         return;
       }
-
       setAccessToken(accessToken);
-
       Modal.success({ content: `로그인에 성공했습니다.` });
+      console.log("accessToken", accessToken);
       void router.push("/");
     } catch (error) {
       if (error instanceof Error) console.log(error.message);

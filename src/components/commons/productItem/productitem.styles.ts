@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 
 export const ProductItems = styled.article`
-  width: calc(100% / 4 - 50px);
+  max-width: 348px;
+  width: calc(100% / 4 - 60px);
   display: flex;
   flex-direction: column;
 `;
@@ -11,10 +12,10 @@ export const Thumbnail = styled.div`
   aspect-ratio: 3/4;
   background-color: #c4c4c4;
   position: relative;
+  overflow: hidden;
 `;
 export const Image = styled.img`
-  object-fit: cover;
-  object-position: center;
+  height: 100%;
 `;
 
 export const Picked = styled.img`
