@@ -4,7 +4,6 @@ import { gql, useQuery } from "@apollo/client";
 export const FETCH_USER_LOGGED_IN = gql`
   query fetchUserLoggedIn {
     fetchUserLoggedIn {
-      FETCH_USER_LOGGED_IN
       email
       name
     }

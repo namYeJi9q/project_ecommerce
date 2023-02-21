@@ -14,18 +14,18 @@ export default function BrandMain() {
   const [keyword, setKeyword] = useState("");
 
   const { data: BestItemsData } = useQueryFetchUseditemsOfTheBest();
-  const { data: itemData } = useQueryFetchUseditem();
-  const { data: itemsData, refetch, fetchMore } = useQueryFetchUseditems();
+  const { data: ItemData } = useQueryFetchUseditem();
+  const { data: ItemsData, refetch, fetchMore } = useQueryFetchUseditems();
 
   const onChangeKeyword = (value: string) => {
     setKeyword(value);
   };
 
   const onLoadMore = () => {
-    if (!itemsData) return;
+    if (!ItemsData) return;
 
     void fetchMore({
-      variables: { page: Math.ceil(itemsData?.fetchUseditems.length / 10) + 1 },
+      variables: { page: Math.ceil(ItemsData?.fetchUseditems.length / 10) + 1 },
       updateQuery: (prev, { fetchMoreResult }) => {
         if (!fetchMoreResult?.fetchUseditems) {
           return { fetchUseditems: [...prev.fetchUseditems] };
@@ -68,7 +68,7 @@ export default function BrandMain() {
           useWindow={false}
         >
           <S.ProductItemWrap>
-            {itemsData?.fetchUseditems.map((el: IUseditem) => (
+            {ItemsData?.fetchUseditems.map((el: IUseditem) => (
               <ProductItem key={el._id} data={el} />
             ))}
           </S.ProductItemWrap>
