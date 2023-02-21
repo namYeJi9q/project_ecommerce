@@ -41,7 +41,7 @@ export const useMutationLoginUser = () => {
       }
       setAccessToken(accessToken);
       Modal.success({ content: `로그인에 성공했습니다.` });
-      console.log("accessToken", accessToken);
+
       void router.push("/");
     } catch (error) {
       if (error instanceof Error) console.log(error.message);

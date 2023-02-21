@@ -36,7 +36,7 @@ export default function LayoutHeader() {
             <>
               <li>
                 {data?.fetchUserLoggedIn.name}님 포인트{" "}
-                {data?.fetchUserLoggedIn.userPoint}P
+                {data?.fetchUserLoggedIn.userPoint?.amount}P
               </li>
               <li>
                 <span>충전</span>

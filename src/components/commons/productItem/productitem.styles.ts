@@ -5,6 +5,7 @@ export const ProductItems = styled.article`
   width: calc(100% / 4 - 60px);
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 `;
 
 export const Thumbnail = styled.div`

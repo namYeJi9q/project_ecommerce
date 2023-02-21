@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema } from "./login.validation";
 import * as S from "./login.styles";
-import { useRouter } from "next/router";
 
 export default function LoginPage() {
   const { onSubmitLogin } = useMutationLoginUser();
@@ -12,11 +11,12 @@ export default function LoginPage() {
   const { register, handleSubmit, formState } = useForm<IMutationLoginUserArgs>(
     {
       resolver: yupResolver(LoginSchema),
+      mode: "onSubmit",
     }
   );
 
-  const onClickLogin = (data: IMutationLoginUserArgs) => {
-    onSubmitLogin(data);
+  const onClickLogin = async (data: IMutationLoginUserArgs) => {
+    void onSubmitLogin(data);
   };
 
   return (

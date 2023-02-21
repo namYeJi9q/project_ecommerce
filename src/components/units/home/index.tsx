@@ -15,23 +15,24 @@ const Wrapper = styled.section`
     display: flex;
     flex-wrap: wrap;
     row-gap: 50px;
-    column-gap: calc(200px / 3);
+    justify-content: space-between;
+    column-gap: calc(180px / 3);
   }
 `;
 
 export default function Home() {
-  const { data: ItemsData, refetch, fetchMore } = useQueryFetchUseditems();
+  const { data: ItemsData } = useQueryFetchUseditems();
 
   const newArr = new Array(8).fill(1).map((arr, i) => {
     return ItemsData?.fetchUseditems[i];
   });
-  console.log(newArr);
+
   return (
     <Wrapper>
       <h2>New Arrival</h2>
       <section>
         {newArr.map((el) => (
-          <ProductItem key={el._id} data={el} />
+          <ProductItem key={el?._id} data={el} />
         ))}
       </section>
     </Wrapper>

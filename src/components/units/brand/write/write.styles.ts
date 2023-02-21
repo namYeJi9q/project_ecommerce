@@ -33,16 +33,8 @@ export const WriteList = styled.article`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  ::after {
-    content: "";
-    position: absolute;
-    top: 108px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #999;
-  }
+  border-bottom: 1px solid #999;
+
   span {
     font-weight: 500;
     font-size: 24px;
@@ -56,6 +48,13 @@ export const WriteList = styled.article`
     font-weight: 400;
     font-size: 15px;
     padding-left: 19px;
+  }
+`;
+
+export const WriteList_contents = styled(WriteList)`
+  align-items: flex-start;
+  .ql-container.ql-snow {
+    border: none;
   }
 `;
 

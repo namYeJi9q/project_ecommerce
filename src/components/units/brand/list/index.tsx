@@ -14,7 +14,6 @@ export default function BrandMain() {
   const [keyword, setKeyword] = useState("");
 
   const { data: BestItemsData } = useQueryFetchUseditemsOfTheBest();
-  const { data: ItemData } = useQueryFetchUseditem();
   const { data: ItemsData, refetch, fetchMore } = useQueryFetchUseditems();
 
   const onChangeKeyword = (value: string) => {
