@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Modal } from "antd";
 
 export const HeaderWrap = styled.section`
   width: 100%;
@@ -26,6 +27,19 @@ export const HeaderList = styled.ul`
     margin-right: 40px;
     cursor: pointer;
     font-size: 14px;
+  }
+`;
+
+export const PaymentModal = styled(Modal)`
+  width: 464px;
+  height: 333px;
+  border-radius: 10px;
+  background-color: #fff;
+  .ant-btn {
+    display: none;
+  }
+  .ant-modal-close {
+    color: black;
   }
 `;
 

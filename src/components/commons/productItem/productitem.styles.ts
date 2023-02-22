@@ -15,6 +15,7 @@ export const Thumbnail = styled.div`
   position: relative;
   overflow: hidden;
 `;
+
 export const Image = styled.img`
   height: 100%;
 `;

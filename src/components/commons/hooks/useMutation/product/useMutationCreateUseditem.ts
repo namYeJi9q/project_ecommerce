@@ -3,32 +3,33 @@ import {
   IMutationCreateUseditemArgs,
 } from "@/src/commons/types/generated/types";
 import { gql, useMutation } from "@apollo/client";
-import { useRouter } from "next/router";
-import { ICreateUseditemInput } from "../../../../../commons/types/generated/types";
 
-export const CREATE_USEDITEM = gql`
+export const CREATE_USED_ITEM = gql`
   mutation createUseditem($createUseditemInput: CreateUseditemInput!) {
     createUseditem(createUseditemInput: $createUseditemInput) {
       _id
+      name
+      remarks
+      contents
+      price
+      tags
+      images
+      useditemAddress {
+        zipcode
+        address
+        addressDetail
+      }
+      seller {
+        name
+      }
     }
   }
 `;
 
 export const useMutationCreateUseditem = () => {
-  const router = useRouter();
-  const [createUseditem] = useMutation<
+  const mutation = useMutation<
     Pick<IMutation, "createUseditem">,
     IMutationCreateUseditemArgs
-  >(CREATE_USEDITEM);
-
-  const createUsedItemSubmit = async (data: ICreateUseditemInput) => {
-    await createUseditem({
-      variables: {
-        createUseditemInput: {
-          ...data,
-        },
-      },
-    });
-  };
-  return { createUsedItemSubmit };
+  >(CREATE_USED_ITEM);
+  return mutation;
 };

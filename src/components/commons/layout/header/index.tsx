@@ -7,15 +7,26 @@ import { useMutationLogoutUser } from "../../hooks/useMutation/user/useMutationL
 import { useQuery } from "@apollo/client";
 import { IQuery } from "@/src/commons/types/generated/types";
 import { FETCH_USER_LOGGED_IN } from "../../hooks/useQueries/user/useQueryFetchUserLoggedIn";
+import { useState } from "react";
+import PaymentPage from "@/src/components/units/paymentModal";
 
 export default function LayoutHeader() {
   const [accessToken] = useRecoilState(accessTokenState);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { onSubmitLogout } = useMutationLogoutUser();
   const { data } =
     useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGED_IN);
 
   const onClickLogout = () => {
     onSubmitLogout();
+  };
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -35,11 +46,14 @@ export default function LayoutHeader() {
           {accessToken ? (
             <>
               <li>
-                {data?.fetchUserLoggedIn.name}님 포인트{" "}
-                {data?.fetchUserLoggedIn.userPoint?.amount}P
+                {data?.fetchUserLoggedIn.name}님 포인트
+                <u>{data?.fetchUserLoggedIn.userPoint?.amount}</u>P
               </li>
               <li>
-                <span>충전</span>
+                <span onClick={showModal}>충전</span>
+                <S.PaymentModal open={isModalOpen} onCancel={handleCancel}>
+                  <PaymentPage setIsOpen={setIsModalOpen} />
+                </S.PaymentModal>
               </li>
               <li>
                 <span onClick={onClickLogout}>로그아웃</span>
